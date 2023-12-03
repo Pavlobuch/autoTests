@@ -1,8 +1,8 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect} = require('@playwright/test');
 const exp = require('constants');
 
 test.beforeEach('Login on site', async ({ page }) => {
-    await page.goto('https://www.saucedemo.com/');
+    await page.goto('/');
 
     await page.getByPlaceholder('Username').fill('standard_user');
 
