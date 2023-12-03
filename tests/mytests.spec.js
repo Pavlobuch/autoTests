@@ -1,8 +1,7 @@
 const { test, expect } = require('@playwright/test');
 const exp = require('constants');
 
-async function login (page) {
-
+test.beforeEach('Login on site', async ({ page }) => {
     await page.goto('https://www.saucedemo.com/');
 
     await page.getByPlaceholder('Username').fill('standard_user');
@@ -10,11 +9,9 @@ async function login (page) {
     await page.getByPlaceholder('Password').fill('secret_sauce');
 
     await page.locator('#login-button').click();
-};
+  });
 
 test('Login with valid creds', async ({page}) => {
-
-    await login(page);
 
     expect(page.url()).toBe('https://www.saucedemo.com/inventory.html');
 
@@ -30,7 +27,6 @@ test('Login with valid creds', async ({page}) => {
 
 test('Add product to the cart', async ({page}) => {
 
-    await login(page);
     expect(page.url()).toBe('https://www.saucedemo.com/inventory.html');
 
     await page.locator('#add-to-cart-sauce-labs-backpack').click();
